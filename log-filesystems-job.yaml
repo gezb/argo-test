@@ -25,6 +25,8 @@ spec:
           value: core-services
         - name: SERVICE_ACCOUNT_NAME
           value: pharos-batch
+        - name: ARGOCD_PROJECT_NAME
+          value: something
         - name: IMAGE_NAME
           value: pharos-batch:0.0.1
         - name: FILE_CHUNK_SIZE
