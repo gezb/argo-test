@@ -2,13 +2,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: pharos-batch
-  namespace: default
+  namespace: core-services
 automountServiceAccountToken: true # used by client-go for InClusterConfig()
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: default
+  namespace: core-services
   name: pharos-batch
 rules:
 - apiGroups: ["batch"]
@@ -23,11 +23,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: pharos-batch
-  namespace: default
+  namespace: core-services
 subjects:
 - kind: ServiceAccount
   name: pharos-batch
-  namespace: default
+  namespace: core-services
 roleRef:
   kind: Role 
   name: pharos-batch
@@ -36,7 +36,7 @@ roleRef:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  namespace: default
+  namespace: core-services
   name: pharos-batch
 rules:
 - apiGroups: [""] # "" indicates the core API group
@@ -47,11 +47,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: pharos-batch
-  namespace: default
+  namespace: core-services
 subjects:
 - kind: ServiceAccount
   name: pharos-batch
-  namespace: default
+  namespace: core-services
 roleRef:
   kind: ClusterRole 
   name: pharos-batch
