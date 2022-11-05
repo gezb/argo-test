@@ -46,7 +46,7 @@ spec:
         volumeMounts:
         - mountPath: /mnt/efs-root
           name: filesystem
-         - mountPath: /mnt/efs-root2
+        - mountPath: /mnt/efs-root2
           name: filesystem2
       volumes:
         - name: filesystem
