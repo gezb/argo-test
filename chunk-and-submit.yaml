@@ -3,9 +3,6 @@ kind: Job
 metadata:
   name: pharos-log-filesystems-testrunid
   namespace: core-services
-  labels:
-    service: pharos-batch
-    runMode: LOG_FILESYSTEMS
 spec:
   backoffLimit: 0
   template:
@@ -18,7 +15,7 @@ spec:
         imagePullPolicy: Never
         env:
         - name: RUN_MODE
-          value: CHUNK_AND_SUBMIT
+          value: SCAN_FILESYSTEMS
         - name: SERVICE_ID
           value: pharos-batch
         - name: NAMESPACE
