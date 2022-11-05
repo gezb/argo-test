@@ -32,7 +32,11 @@ spec:
         - name: PARENT_UID
           valueFrom:
             fieldRef:
-              fieldPath: metadata.uid         
+              fieldPath: metadata.uid
+        - name: PARENT_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         - name: IMAGE_NAME
           value: pharos-batch:0.0.1
         - name: FILE_CHUNK_SIZE
