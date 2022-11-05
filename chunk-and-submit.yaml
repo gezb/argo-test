@@ -39,13 +39,13 @@ spec:
         - name: FILE_CHUNK_SIZE
           value: "1G"
         - name: FILESYSTEM_ROOT_DIRECTORY
-          value: /mnt/
+          value: /mnt/pvcs/
         - name: CLAMAV_IMAGE_NAME
           value: clamav:x.y.z
         - name: QUARANTINE_PVC_NAME
           value: quarantine-pvc
         volumeMounts:
-        - mountPath: /mnt/efs-root
+        - mountPath: /mnt/pvcs/efs-root
           name: filesystem
         - mountPath: /mnt/quarantine
           name: quarantine
