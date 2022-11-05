@@ -13,7 +13,7 @@ spec:
       restartPolicy: Never
       serviceAccount: pharos-batch
       containers:
-       - name: pharos-log-filesystems-testrunid
+      - name: pharos-log-filesystems-testrunid
         image: pharos-batch:0.0.1
         imagePullPolicy: Never
         env:
