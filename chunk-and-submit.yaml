@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pharos-log-filesystems-testrunid
+  name: pharos-scan-filesystems-testrunid
   namespace: core-services
 spec:
   backoffLimit: 0
@@ -10,7 +10,7 @@ spec:
       restartPolicy: Never
       serviceAccount: pharos-batch
       containers:
-      - name: pharos-log-filesystems-testrunid
+      - name: pharos-scan-filesystems-testrunid
         image: pharos-batch:0.0.1
         imagePullPolicy: Never
         env:
@@ -40,8 +40,6 @@ spec:
           value: "1G"
         - name: FILESYSTEM_ROOT_DIRECTORY
           value: /mnt/pvcs/
-        - name: CLAMAV_IMAGE_NAME
-          value: clamav:x.y.z
         - name: QUARANTINE_PVC_NAME
           value: quarantine-pvc
         volumeMounts:
