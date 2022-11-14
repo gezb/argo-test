@@ -42,6 +42,8 @@ spec:
           value: /mnt/pvcs/
         - name: QUARANTINE_PVC_NAME
           value: quarantine-pvc
+        - name: VIRUS_DEFINITION_PVC_NAME
+          value: virus-defs
         volumeMounts:
         - mountPath: /mnt/pvcs/efs-root
           name: filesystem
@@ -54,3 +56,4 @@ spec:
         - name: quarantine
           persistentVolumeClaim:
             claimName: quarantine-pvc
+            
