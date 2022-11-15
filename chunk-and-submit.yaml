@@ -37,7 +37,7 @@ spec:
         - name: IMAGE_NAME
           value: pharos-batch:0.0.1
         - name: FILE_CHUNK_SIZE
-          value: "1G"
+          value: "500M"
         - name: FILESYSTEM_ROOT_DIRECTORY
           value: /mnt/pvcs/
         - name: QUARANTINE_PVC_NAME
