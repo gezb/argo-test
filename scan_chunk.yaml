@@ -14,12 +14,12 @@ spec:
   parallelism: 1
   selector:
     matchLabels:
-      job-name: pharos-scan-chunk-5-run-2022-11-19-17-25-38-efs-root
+      job-name: pharos-scan-chunk-5
   template:
     metadata:
       creationTimestamp: null
       labels:
-        job-name: pharos-scan-chunk-5-run-2022-11-19-17-25-38-efs-root
+        job-name: pharos-scan-chunk-5
     spec:
       containers:
       - env:
