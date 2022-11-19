@@ -6,7 +6,7 @@ metadata:
     runId: run-2022-11-19-17-25-38
     runMode: SCAN_CHUNK
     service: pharos-batch
-  name: pharos-scan-chunk-5-run-2022-11-19-17-25-38-efs-root
+  name: pharos-scan-chunk-5
   namespace: core-services
 spec:
   backoffLimit: 0
@@ -23,6 +23,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: DEV_LOGGING
+          value: "true"
         - name: RUN_MODE
           value: SCAN_CHUNK
         - name: RUN_ID
