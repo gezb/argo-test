@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - env:
-        - name: DEV_LOGGING
+        - name: DEBUG_LOGGING
           value: "true"
         - name: RUN_MODE
           value: SCAN_CHUNK
