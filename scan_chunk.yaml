@@ -13,10 +13,13 @@ spec:
   completions: 1
   parallelism: 1
   selector:
+    matchLabels:
+      job-name: pharos-scan-chunk-5-run-2022-11-19-17-25-38-efs-root
   template:
     metadata:
       creationTimestamp: null
       labels:
+        controller-uid: 2da00ec8-56bc-4805-bef2-c8ea52446921
         job-name: pharos-scan-chunk-5-run-2022-11-19-17-25-38-efs-root
     spec:
       containers:
