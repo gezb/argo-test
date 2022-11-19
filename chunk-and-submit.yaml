@@ -52,10 +52,10 @@ spec:
         - mountPath: /mnt/quarantine
           name: quarantine
       volumes:
-        - name: efsroot
+        - name: filesystem
           persistentVolumeClaim:
             claimName: efs-root
-          name: efsroot2
+        - name: efsroot2
           persistentVolumeClaim:
             claimName: efs-root2
         - name: quarantine
