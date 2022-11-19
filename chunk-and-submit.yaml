@@ -46,16 +46,16 @@ spec:
           value: virus-defs
         volumeMounts:
         - mountPath: /mnt/pvcs/efs-root
-          name: efsroot
+          name: filesystem
         - mountPath: /mnt/pvcs/efs-root2
-          name: efsroot2
+          name: filesystem2
         - mountPath: /mnt/quarantine
           name: quarantine
       volumes:
         - name: filesystem
           persistentVolumeClaim:
             claimName: efs-root
-        - name: efsroot2
+        - name: filesystem2
           persistentVolumeClaim:
             claimName: efs-root2
         - name: quarantine
