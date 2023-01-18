@@ -47,7 +47,7 @@ spec:
         volumeMounts:
         - mountPath: /mnt/pvcs/efs-root
           name: filesystem
-         - mountPath: /mnt/pvcs/efs-root2
+        - mountPath: /mnt/pvcs/efs-root2
            name: filesystem2
         - mountPath: /mnt/quarantine
           name: quarantine
