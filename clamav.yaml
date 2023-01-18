@@ -1,0 +1,162 @@
+---
+# Source: pharos/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: pharos
+  namespace:  core-services
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /ready
+  labels:
+    app.kubernetes.io/name: pharos
+    helm.sh/chart: pharos-0.9.0
+    app.kubernetes.io/instance: pharos
+    app.kubernetes.io/version: "1.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 9810
+      targetPort: clamav-metrics
+      protocol: TCP
+      name: clamav-metrics
+    - port: 9001
+      targetPort: pharos-metrics
+      protocol: TCP
+      name: pharos-metrics
+  selector:
+    app.kubernetes.io/name: pharos
+    app.kubernetes.io/instance: pharos
+---
+# Source: pharos/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pharos
+  namespace:  core-services
+  labels:
+    app.kubernetes.io/name: pharos
+    helm.sh/chart: pharos-0.9.0
+    app.kubernetes.io/instance: pharos
+    app.kubernetes.io/version: "1.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: pharos
+      app.kubernetes.io/instance: pharos
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: pharos
+        app.kubernetes.io/instance: pharos
+    spec:
+      containers:
+        - name: pharos
+          image: "apak/pharos:1.7.2"
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: SERVICE_ID
+            value: pharos-research-us-east-2
+          - name: GATHERDIRECTORYSTATS_ENABLED
+            value: "false"
+          - name: JWT_SECRETKEY
+            value: usahfiusdhfdnfoirgnkrlmgioptgmlthpothpot
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: pharos-metrics
+              containerPort: 9001
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              memory: 256Mi
+        - name: clamav
+          image: "apak/clamav:1.0.0.1"
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: SERVICE_ID
+            value: pharos-research-us-east-2
+          - name: QUARANTINE_ROOT_DIR
+            value: /mnt/quarantine
+          - name: FRESHCLAM_CHECKS
+            value: "24"
+          ports:
+            - name: http
+              containerPort: 3310
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /mnt/quarantine
+              name: quarantine
+            - mountPath: /var/lib/clamav
+              name: virus-definitions
+          resources:
+            limits:
+              memory: 4096Mi
+            requests:
+              memory: 2048Mi
+        - name: clamav-prometheus-exporter
+          image: "apak/clamav-prometheus-exporter:1.1.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: clamav-metrics
+              containerPort: 9810
+              protocol: TCP
+      volumes:
+        - name: quarantine
+          persistentVolumeClaim:
+              claimName: quarantine
+        - name: virus-definitions
+          persistentVolumeClaim:
+              claimName: virus-definitions
+---
+# Source: pharos/templates/clamav-exporter-sm.yaml
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   name: pharos-clamav
+#   namespace:  core-services
+# spec:
+#   endpoints:
+#     - port: clamav-metrics
+#   namespaceSelector:
+#     matchNames:
+#       - core-services
+#   selector:
+#     matchLabels:
+#       app.kubernetes.io/name: pharos
+#       app.kubernetes.io/instance: pharos
+# ---
+# Source: pharos/templates/pharos-sm.yaml
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   name: pharos-pharos
+#   namespace:  core-services
+# spec:
+#   endpoints:
+#     - port: pharos-metrics
+#       path: /actuator/prometheus
+#   namespaceSelector:
+#     matchNames:
+#       - core-services
+#   selector:
+#     matchLabels:
+#       app.kubernetes.io/name: pharos
+#       app.kubernetes.io/instance: pharos
