@@ -35,7 +35,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: IMAGE_NAME
-          value: pharos-batch:0.0.1
+          value: pharos-batch:1.1.0
         - name: FILE_CHUNK_SIZE
           value: "1G"
         - name: FILESYSTEM_ROOT_DIRECTORY
