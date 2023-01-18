@@ -15,7 +15,7 @@ spec:
         imagePullPolicy: Never
         env:
         - name: RUN_MODE
-          value: LOG_FILESYSTEMS
+          value: SCAN_FILESYSTEMS
         - name: SERVICE_ID
           value: pharos-batch
         - name: NAMESPACE
