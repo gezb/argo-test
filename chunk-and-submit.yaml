@@ -15,7 +15,7 @@ spec:
         imagePullPolicy: Never
         env:
         - name: RUN_MODE
-          value: LOG_FILESYSTEMS
+          value: SCAN_FILESYSTEMS
         - name: SERVICE_ID
           value: pharos-batch
         - name: NAMESPACE
@@ -47,17 +47,17 @@ spec:
         volumeMounts:
         - mountPath: /mnt/pvcs/efs-root
           name: filesystem
-        - mountPath: /mnt/pvcs/efs-root2
-          name: filesystem2
+#         - mountPath: /mnt/pvcs/efs-root2
+#           name: filesystem2
         - mountPath: /mnt/quarantine
           name: quarantine
       volumes:
         - name: filesystem
           persistentVolumeClaim:
             claimName: efs-root
-        - name: filesystem2
-          persistentVolumeClaim:
-            claimName: efs-root2
+#         - name: filesystem2
+#           persistentVolumeClaim:
+#             claimName: efs-root2
         - name: quarantine
           persistentVolumeClaim:
             claimName: quarantine
