@@ -35,7 +35,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: IMAGE_NAME
-          value: pharos-batch:1.1.0
+          value: pharos-batch:0.0.1
         - name: FILE_CHUNK_SIZE
           value: "1G"
         - name: FILESYSTEM_ROOT_DIRECTORY
@@ -48,7 +48,7 @@ spec:
         - mountPath: /mnt/pvcs/efs-root
           name: filesystem
         - mountPath: /mnt/pvcs/efs-root2
-           name: filesystem2
+          name: filesystem2
         - mountPath: /mnt/quarantine
           name: quarantine
       volumes:
