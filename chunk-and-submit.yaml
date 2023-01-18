@@ -11,7 +11,7 @@ spec:
       serviceAccount: pharos-batch
       containers:
       - name: pharos-scan-filesystems-testrunid
-        image: pharos-batch:0.0.1
+        image: pharos-batch:1.1.0
         imagePullPolicy: Never
         env:
         - name: RUN_MODE
