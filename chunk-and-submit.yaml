@@ -11,7 +11,7 @@ spec:
       serviceAccount: pharos-batch
       containers:
       - name: pharos-batch
-        image: pharos-batch:1.1.0
+        image: pharos-batch:1.2.0
         imagePullPolicy: Never
         env:
         - name: RUN_MODE
@@ -35,7 +35,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: IMAGE_NAME
-          value: pharos-batch:1.1.0
+          value: pharos-batch:1.2.0
         - name: FILE_CHUNK_SIZE
           value: "1G"
         - name: FILESYSTEM_ROOT_DIRECTORY
@@ -47,17 +47,17 @@ spec:
         volumeMounts:
         - mountPath: /mnt/pvcs/efs-root
           name: filesystem
-#         - mountPath: /mnt/pvcs/efs-root2
-#           name: filesystem2
+        - mountPath: /mnt/pvcs/efs-root2
+          name: filesystem2
         - mountPath: /mnt/quarantine
           name: quarantine
       volumes:
         - name: filesystem
           persistentVolumeClaim:
             claimName: efs-root
-#         - name: filesystem2
-#           persistentVolumeClaim:
-#             claimName: efs-root2
+        - name: filesystem2
+          persistentVolumeClaim:
+            claimName: efs-root2
         - name: quarantine
           persistentVolumeClaim:
             claimName: quarantine
