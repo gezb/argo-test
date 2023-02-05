@@ -149,7 +149,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: pharos-pharos
-  namespace:  pharos
+  namespace:  core-services
 spec:
   endpoints:
     - port: pharos-metrics
