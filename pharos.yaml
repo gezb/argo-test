@@ -68,7 +68,7 @@ spec:
           - name: JWT_SECRETKEY
             valueFrom:
               secretKeyRef:
-                key: encryptionKey
+                key: encryptionkey
                 name: pharos-secret
           ports:
             - name: http
