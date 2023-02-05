@@ -1,64 +1,70 @@
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   name: pharos-batch
-#   namespace: core-services
-# spec:
-#   backoffLimit: 0
-#   template:
-#     spec:
-#       restartPolicy: Never
-#       serviceAccount: pharos-batch
-#       containers:
-#       - name: pharos-batch
-#         image: pharos-batch:1.3.0
-#         imagePullPolicy: Never
-#         env:
-#         - name: RUN_MODE
-#           value: SCAN_FILESYSTEMS
-#         - name: SERVICE_ID
-#           value: pharos-batch
-#         - name: NAMESPACE
-#           valueFrom:
-#             fieldRef:
-#               fieldPath: metadata.namespace
-#         - name: SERVICE_ACCOUNT_NAME
-#           valueFrom:
-#             fieldRef:
-#               fieldPath: spec.serviceAccountName
-#         - name: PARENT_UID
-#           valueFrom:
-#             fieldRef:
-#               fieldPath: metadata.uid
-#         - name: PARENT_NAME
-#           valueFrom:
-#             fieldRef:
-#               fieldPath: metadata.name
-#         - name: IMAGE_NAME
-#           value: pharos-batch:1.3.0
-#         - name: FILE_CHUNK_SIZE
-#           value: "1G"
-#         - name: FILESYSTEM_ROOT_DIRECTORY
-#           value: /mnt/pvcs/
-#         - name: QUARANTINE_PVC_NAME
-#           value: quarantine
-#         - name: VIRUS_DEFINITION_PVC_NAME
-#           value: virus-definitions
-#         volumeMounts:
-#         - mountPath: /mnt/pvcs/efs-root
-#           name: filesystem
-#         - mountPath: /mnt/pvcs/efs-root2
-#           name: filesystem2
-#         - mountPath: /mnt/quarantine
-#           name: quarantine
-#       volumes:
-#         - name: filesystem
-#           persistentVolumeClaim:
-#             claimName: efs-root
-#         - name: filesystem2
-#           persistentVolumeClaim:
-#             claimName: efs-root2
-#         - name: quarantine
-#           persistentVolumeClaim:
-#             claimName: quarantine
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pharos-batch
+  namespace: core-services
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      serviceAccount: pharos-batch
+      containers:
+      - name: pharos-batch
+        image: pharos-batch:1.3.0
+        imagePullPolicy: Never
+        env:
+        - name: RUN_MODE
+          value: SCAN_FILESYSTEMS
+        - name: SERVICE_ID
+          value: pharos-batch
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: SERVICE_ACCOUNT_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.serviceAccountName
+        - name: PARENT_UID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.uid
+        - name: PARENT_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: IMAGE_NAME
+          value: pharos-batch:1.3.0
+        - name: FILE_CHUNK_SIZE
+          value: "1G"
+        - name: FILESYSTEM_ROOT_DIRECTORY
+          value: /mnt/pvcs/
+        - name: QUARANTINE_PVC_NAME
+          value: quarantine
+        - name: VIRUS_DEFINITION_PVC_NAME
+          value: virus-definitions
+        - name: PHAROS_SECRET_NAME
+          value: pharos-secret
+        - name: PHAROS_SECRET_KEY
+          value: encryptionkey
+        - name: METRICS_ADDRESS
+          value: http://10.42.0.204:8080
+        volumeMounts:
+        - mountPath: /mnt/pvcs/efs-root
+          name: filesystem
+        - mountPath: /mnt/pvcs/efs-root2
+          name: filesystem2
+        - mountPath: /mnt/quarantine
+          name: quarantine
+      volumes:
+        - name: filesystem
+          persistentVolumeClaim:
+            claimName: efs-root
+        - name: filesystem2
+          persistentVolumeClaim:
+            claimName: efs-root2
+        - name: quarantine
+          persistentVolumeClaim:
+            claimName: quarantine
             
