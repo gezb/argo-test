@@ -48,6 +48,8 @@ spec:
           value: pharos-secret
         - name: PHAROS_SECRET_KEY
           value: encryptionkey
+        - name: METRICS_ADDRESS
+          value: http://10.42.0.140:8080
         volumeMounts:
         - mountPath: /mnt/pvcs/efs-root
           name: filesystem
