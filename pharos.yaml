@@ -142,7 +142,7 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: pharos
-      app.kubernetes.io/instance: pharos
+      app.kubernetes.io/instance: core-services
 ---
 # Source: pharos/templates/pharos-sm.yaml
 apiVersion: monitoring.coreos.com/v1
@@ -160,4 +160,4 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: pharos
-      app.kubernetes.io/instance: pharos
+      app.kubernetes.io/instance: core-services
