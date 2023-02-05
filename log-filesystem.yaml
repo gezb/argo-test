@@ -10,12 +10,12 @@ spec:
       restartPolicy: Never
       serviceAccount: pharos-batch
       containers:
-      - name: pharos-batch
+      - name: log-filesystems
         image: pharos-batch:1.3.1
         imagePullPolicy: Never
         env:
         - name: RUN_MODE
-          value: SCAN_FILESYSTEMS
+          value: LOG_FILESYSTEMS
         - name: SERVICE_ID
           value: pharos-batch
         - name: NAMESPACE
