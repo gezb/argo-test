@@ -149,7 +149,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: pharos-pharos
-  namespace:  core-services
+  namespace:  pharos
 spec:
   endpoints:
     - port: pharos-metrics
@@ -160,4 +160,4 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: pharos
-      app.kubernetes.io/instance: core-services
+      app.kubernetes.io/instance: pharos
