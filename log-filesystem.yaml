@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pharos-batch
+  name: log-filesystems
   namespace: core-services
 spec:
   backoffLimit: 0
