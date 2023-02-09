@@ -49,7 +49,7 @@ spec:
         - name: PHAROS_SECRET_KEY
           value: encryptionkey
         - name: METRICS_ADDRESS
-          value:  http://10.42.0.188:8080
+          value:  http://10.42.0.226:8080
         volumeMounts:
         - mountPath: /mnt/pvcs/efs-root
           name: filesystem
