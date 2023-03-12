@@ -58,7 +58,7 @@ spec:
       volumes:
         - name: filesystem
           persistentVolumeClaim:
-            claimName: efs-root1
+            claimName: efs-root
         # - name: filesystem2
         #   persistentVolumeClaim:
         #     claimName: efs-root2
