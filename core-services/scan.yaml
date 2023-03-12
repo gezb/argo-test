@@ -12,7 +12,7 @@ spec:
       containers:
       - name: pharos-batch
         image: pharos-batch:1.3.0
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         env:
         - name: RUN_MODE
           value: SCAN_FILESYSTEMS
