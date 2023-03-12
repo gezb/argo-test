@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: pharos
-          image: "192.168.0.200/apak/pharos:1.10.0"
+          image: "192.168.0.200:80/apak/pharos:1.10.0"
           imagePullPolicy: IfNotPresent
           env:
           - name: SERVICE_ID
@@ -91,7 +91,7 @@ spec:
             requests:
               memory: 256Mi
         - name: clamav
-          image: "192.168.0.200/apak/clamav:1.0.1.1"
+          image: "192.168.0.200:80/apak/clamav:1.0.1.1"
           imagePullPolicy: IfNotPresent
           env:
           - name: SERVICE_ID
@@ -113,7 +113,7 @@ spec:
             requests:
               memory: 2048Mi
         - name: clamav-prometheus-exporter
-          image: "192.168.0.200/apak/clamav-prometheus-exporter:1.1.0"
+          image: "192.168.0.200:80/apak/clamav-prometheus-exporter:1.1.0"
           imagePullPolicy: IfNotPresent
           ports:
             - name: clamav-metrics
